@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\AccountStatus;
 
 class Account extends Model
 {
@@ -12,19 +13,19 @@ class Account extends Model
         'status',
     ];
     protected $casts = [
-        'status' => \App\Enums\AccountStatus::class,
+        'status' => AccountStatus::class,
     ];
     public function isActive(): bool
     {
-        return $this->status === 'active';
+        return $this->status === AccountStatus::ACTIVE;
     }
     public function isInactive(): bool
     {
-        return $this->status === 'inactive';
+        return $this->status === AccountStatus::INACTIVE;
     }
     public function isSuspended(): bool
     {
-        return $this->status === 'suspended';
+        return $this->status === AccountStatus::SUSPENDED;
     }
     public function users()
     {
