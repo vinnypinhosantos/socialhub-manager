@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IndexUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Services\User\CreateUserService;
+use App\Services\User\IndexUserService;
 use App\DTOs\User\CreateUserDTO;
 use App\Enums\UserRole;
+use App\Models\User;
 
 class UserController extends Controller
 {
+    public function show(User $user)
+    {
+
+        return response()->json($user);
+    }
+    
     public function store(
         StoreUserRequest $request,
         CreateUserService $service
